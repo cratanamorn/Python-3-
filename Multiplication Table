@@ -1,0 +1,35 @@
+''' Python Program to find the multiplication table
+from any range'''
+
+'''To take input from the user ( Value to be multiplied, Beginning of the rang,
+end of the range, and then will loop if another table is needed'''
+
+# This is a function for a welcome print out
+def welcom():
+    print("Welcome to the multiplication table")
+
+# This function is the multiplication table operation
+def mtable():
+    num = int(input("Display multiplication table of? "))
+    start_range = int(input("What is the starting number of range: "))
+    end_range = int(input("What is the ending number of the range: "))
+    for i in range(start_range,end_range+1):
+        result = num * i
+        print(num, "x", i, "=", result)
+    another()
+
+# This functions add the ability to rerun the reset and re-run the program.
+def another():
+    noBreak = True
+    another_try = input("Do you want to try another number?(y/n): ")
+    if another_try == "y":
+        noBreak = True
+        mtable()
+    else:
+        print("Good Bye")
+        noBreak = False
+
+
+welcom()
+mtable()
+another()
