@@ -55,5 +55,6 @@ def the_game():
             print("Wrong entry, please answer the correct way!")
             try_again
 
+
 if __name__ == '__main__':
     the_game()
