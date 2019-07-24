@@ -1,0 +1,59 @@
+import random
+import sys
+
+def win():
+    print("You Won this round!")
+
+def lost():
+    print("You Lost this round!")
+def draw():
+    print("It's a draw, try again!")
+
+def the_game():
+    moves = ["rock", "paper", "scissor"]
+    print("** Rock / Paper / Scissor **")
+
+    attempts = 3
+    while True:
+        if attempts == 0:
+            print("The game is over")
+            sys.exit()
+
+        player = str(input("Player: " )).lower()
+        if player.lower() not in moves:
+            print("Not a valid selection")
+            attempts -= 1
+        else:
+            cpu_choice = random.choice(moves)
+            print(f"CPU has chose " , {cpu_choice})
+
+        # The first if eliminates D.R.Y. issues with payer/CPU draws.
+        if player == cpu_choice:
+            draw()
+        elif player == "rock" and cpu_choice == "paper":
+            lost()
+        elif player == "rock" and cpu_choice == "scissor":
+            win()
+        elif player == "paper" and cpu_choice == "rock":
+            win()
+        elif player == "paper" and cpu_choice == "scissor":
+            lost()
+        elif player == "scissor" and cpu_choice == "rock":
+            lost()
+        elif player == "scissor" and cpu_choice == "paper":
+            win()
+        else:
+            pass
+
+        try_again = str(input("Do you want to try again: (y/n")).lower()
+        if try_again == "y":
+            the_game()
+        elif try_again == "n":
+            print("Thank you for playing, Goodbye!")
+            sys.exit()
+        else:
+            print("Wrong entry, please answer the correct way!")
+            try_again
+
+if __name__ == '__main__':
+    the_game()
