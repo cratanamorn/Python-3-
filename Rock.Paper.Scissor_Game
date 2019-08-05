@@ -1,0 +1,104 @@
+# Paper/Rock/Scissor
+
+import sys
+import random
+
+# This function explains the rules of the game for winning and losing.
+def Main():
+    print()
+    print("                     PAPER ROCK SCISSOR")
+    print("                First to Three wins the game!\n")
+    print("                Rules : Paper covers rock")
+    print("                        Rock smashes scissor")
+    print("                        Scissor cuts paper\n")
+
+# Game design
+
+def rock_paper_scissor():
+    # Score Tracker
+    user_score = 0
+    cpu_score = 0
+
+    # setup the list for cpu random choice
+    rpslist = ["rock", "paper", "scissor"]
+
+    # User and CPU choices
+    user1 = str(input("What is your name?: "))
+    cpu1 = str(input("What is the cpu's name?: "))
+
+    # Keep count of rounds
+    count = 1
+
+    # The while loop will keep looping the game until the cpu or user has reached the rounds goal picked
+    while user_score or cpu_score != 3:
+        # First print the round the game is in
+        print("\n***** ROUND #",count," *****")
+
+        # Game user and cpu choices
+        user_choice = input("What is your choice?: Rock/Paper/Scissor: ").lower()
+        print(user1 + " has chosen " + user_choice)
+
+        # CPU choice set with random module
+        cpu_choice = random.choice(rpslist)
+        print(cpu1 + " has chosen " + cpu_choice)
+
+        # User and Cpu choice is the same the game will be a tie.
+        if user_choice == cpu_choice:
+            print("It's a tie")
+
+        # Cpu wins
+        elif cpu_choice == "rock" and user_choice == "scissor":
+            print("rock smashes scissor\n", cpu1 + " has won this round")
+            # Update the counter and the score
+            cpu_score += 1
+        elif cpu_choice == "paper" and user_choice == "rock":
+            print("paper covers rock\n", cpu1 + " has won this round")
+            # Update the counter and the score
+            cpu_score += 1
+        elif cpu_choice == "scissor" and user_choice == "paper":
+            print("scissor cuts paper\n", cpu1 + " has won this round")
+            # Update the counter and the score
+            cpu_score += 1
+
+        # User Wins
+        elif cpu_choice == "paper" and user_choice == "scissor":
+            print("scissor cuts paper\n", user1 + " has won this round")
+            # Update the counter and the score
+            user_score += 1
+        elif cpu_choice == "scissor" and user_choice == "rock":
+            print("rock smashes scissor\n", user1 + " has won this round")
+            # Update the counter and the score
+            user_score += 1
+        elif cpu_choice == "rock" and user_choice == "paper":
+            print("paper covers rock\n", user1 + " has won this round")
+            # Update the counter and the score
+            user_score += 1
+        count += 1
+        print("\n" + user1 + "= " + str(user_score))
+        print(cpu1 + "= " + str(cpu_score))
+
+        # End the game when cpu or user gets to 3
+        if user_score == 3:
+            print(user1 + " has won the game")
+            print("*****Game is over*****")
+            EndofGame()
+
+        if cpu_score == 3:
+            print(cpu1 + " has won the game")
+            print("*****Game is over*****")
+            EndofGame()
+
+def EndofGame():
+    Another_game = input("Do you want to play another game?:y/n  ")
+    if Another_game == "y":
+        rock_paper_scissor()
+    elif Another_game == "n":
+        sys.exit()
+    else:
+        print("not a valid answer; please choose a correct answer")
+        EndofGame()
+
+Main()
+rock_paper_scissor()
+EndofGame()
+
